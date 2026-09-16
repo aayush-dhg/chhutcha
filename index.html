@@ -8,7 +8,7 @@
     :root{--bg:#07111f;--panel:#0e1c2e;--line:#2c4864;--text:#eef7ff;--muted:#a8bfd2;--brand:#35d07f;--accent:#ffca4b}
     *{box-sizing:border-box} body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at top,#12304a,var(--bg) 48%);color:var(--text)}
     header,main{width:min(1180px,92vw);margin:auto} header{padding:56px 0 28px} h1{font-size:clamp(2rem,5vw,4rem);margin:0} h2{margin:0 0 8px} p{color:var(--muted)}
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.controls button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer}
+    .page-actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.demo-link{display:inline-flex;align-items:center;background:var(--accent);color:#172313;padding:11px 16px;border-radius:999px;font-weight:850;text-decoration:none}.demo-link:hover{transform:translateY(-2px)}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.controls button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer}
     .controls button.active{background:var(--brand);color:#052012;border-color:var(--brand)}
     .diagram{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;padding-bottom:48px}.group{display:grid;gap:12px}
     .group>h2{text-align:center;color:var(--accent);font-size:1rem;text-transform:uppercase;letter-spacing:.1em}.card{background:linear-gradient(145deg,#12263d,var(--panel));border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 16px 30px #0005;transition:.2s}
@@ -23,7 +23,7 @@
   <span class="tag">chhutcha.com · proposed architecture</span>
   <h1>One coupon platform.<br>Built to grow across Nepal.</h1>
   <p>Explore the clients, modular application domains, and platform services. Select a view to focus the diagram.</p>
-  <div class="controls" role="group" aria-label="Architecture view">
+  <div class="page-actions"><a class="demo-link" href="demo.html">View Homepage Demo →</a></div>\n  <div class="controls" role="group" aria-label="Architecture view">
     <button class="active" data-view="all">Full system</button>
     <button data-view="customer">Customer journey</button>
     <button data-view="business">Business journey</button>
