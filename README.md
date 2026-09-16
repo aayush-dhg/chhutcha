@@ -5,6 +5,7 @@
 Businesses will be able to publish and manage their own offers, while ChhutCha provides discovery, validation, redemption, moderation, and performance insights through one scalable platform.
 
 > Domain: [chhutcha.com](https://chhutcha.com)  
+> Project page: [aayush-dhg.github.io/chhutcha](https://aayush-dhg.github.io/chhutcha/)  
 > Status: Planning and architecture  
 > Initial product: Responsive web application  
 > Future clients: Android and iOS applications
