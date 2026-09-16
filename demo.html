@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ChhutCha demo — discover coupons and local deals across Nepal.">
+  <title>ChhutCha Demo — Nepal's Deals, One Place</title>
+  <style>
+    :root{--ink:#14231d;--muted:#64736c;--paper:#fbfdfb;--card:#fff;--green:#087443;--green2:#10a866;--mint:#e3f7ec;--line:#dfe8e2;--yellow:#ffd666;--orange:#ff7849;--shadow:0 14px 40px rgba(18,57,39,.10)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+    button,input{font:inherit}button,a{transition:.18s}a{text-decoration:none;color:inherit}.wrap{width:min(1180px,92vw);margin:auto}
+    .demo-bar{background:#14231d;color:#fff;text-align:center;padding:7px 16px;font-size:.78rem;letter-spacing:.03em}.demo-bar a{text-decoration:underline;margin-left:6px}
+    header{position:sticky;top:0;z-index:20;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}nav{height:72px;display:flex;align-items:center;gap:24px}.brand{font-size:1.55rem;font-weight:900;color:var(--green);letter-spacing:-.04em}.brand span{color:var(--orange)}.navlinks{display:flex;gap:22px;margin-right:auto}.navlinks a:hover{color:var(--green)}.actions{display:flex;align-items:center;gap:10px}.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:750;cursor:pointer}.btn.ghost{background:#fff;border:1px solid var(--line)}.btn.primary{background:var(--green);color:#fff}.btn:hover{transform:translateY(-1px)}
+    .hero{overflow:hidden;background:linear-gradient(135deg,#e5f8ed 0%,#fff8df 100%);padding:68px 0 58px;border-bottom:1px solid var(--line)}.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:42px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #cfe8d9;border-radius:999px;padding:7px 12px;color:var(--green);font-weight:800;font-size:.78rem}.dot{width:8px;height:8px;background:var(--green2);border-radius:50%}h1{font-size:clamp(2.5rem,5vw,4.7rem);line-height:1.02;letter-spacing:-.06em;margin:18px 0 16px;max-width:760px}h1 em{font-style:normal;color:var(--green)}.hero p{font-size:1.08rem;color:var(--muted);max-width:650px}.search{display:flex;background:#fff;border:1px solid #cadbd2;border-radius:16px;padding:7px;box-shadow:var(--shadow);margin-top:28px;max-width:720px}.search input{border:0;outline:0;min-width:0;flex:1;padding:10px 12px;color:var(--ink)}.search button{border:0;background:var(--green);color:#fff;border-radius:11px;padding:12px 20px;font-weight:800;cursor:pointer}.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;color:var(--muted);font-size:.82rem}.quick button{background:transparent;border:0;color:var(--green);cursor:pointer;padding:0;font-weight:700}
+    .hero-card{position:relative;min-height:340px}.ticket{position:absolute;background:#fff;border-radius:22px;padding:22px;width:270px;box-shadow:0 20px 60px #244b3830}.ticket.one{top:0;right:50px;transform:rotate(4deg)}.ticket.two{bottom:5px;left:5px;transform:rotate(-6deg);background:#143d2c;color:#fff}.ticket .deal{font-size:2.5rem;font-weight:950;letter-spacing:-.06em}.ticket .mini{font-size:.78rem;opacity:.68}.ticket .dash{border-top:2px dashed #cbd9d1;margin:18px 0}.ticket.two .dash{border-color:#ffffff45}.ticket code{display:block;background:#eef7f1;color:#12623e;border-radius:8px;padding:8px;text-align:center;font-weight:900;letter-spacing:.12em}.ticket.two code{background:#ffffff18;color:#fff}
+    section{padding:58px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}.section-head h2{font-size:clamp(1.55rem,3vw,2.2rem);margin:0;letter-spacing:-.04em}.section-head p{margin:5px 0 0;color:var(--muted)}.section-head a{color:var(--green);font-weight:800}
+    .categories{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}.cat{border:1px solid var(--line);background:#fff;border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer}.cat:hover,.cat.active{border-color:var(--green);background:var(--mint);transform:translateY(-3px)}.cat .icon{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 8px;background:#f2f6f3;border-radius:14px;font-size:1.45rem}.cat span{font-size:.82rem;font-weight:750}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.filter{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;cursor:pointer;color:var(--muted)}.filter.active{background:var(--ink);border-color:var(--ink);color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.coupon{overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:19px;box-shadow:0 8px 28px rgba(20,35,29,.06);display:flex;flex-direction:column}.coupon:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.visual{height:150px;position:relative;padding:18px;display:flex;align-items:flex-end;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff}.visual:after{content:"";position:absolute;width:120px;height:120px;border:28px solid #ffffff18;border-radius:50%;right:-35px;top:-38px}.storemark{position:absolute;top:14px;left:14px;background:#fff;color:var(--ink);border-radius:10px;padding:7px 10px;font-weight:900;box-shadow:0 4px 18px #0002}.save{position:absolute;z-index:2;right:13px;top:13px;border:0;border-radius:50%;width:37px;height:37px;background:#ffffffdd;cursor:pointer;font-size:1.05rem}.save.saved{background:#ffe5e5;color:#d23434}.off{position:relative;z-index:1;font-size:2rem;line-height:1;font-weight:950;letter-spacing:-.05em}.content{padding:17px;display:flex;flex-direction:column;flex:1}.meta{display:flex;justify-content:space-between;gap:10px;font-size:.75rem;color:var(--muted)}.content h3{margin:10px 0 7px;font-size:1.05rem;line-height:1.35}.content p{margin:0;color:var(--muted);font-size:.84rem}.coupon-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:17px}.coupon-footer small{color:var(--orange);font-weight:800}.claim{border:0;background:var(--mint);color:var(--green);font-weight:850;border-radius:10px;padding:9px 12px;cursor:pointer}.claim:hover{background:var(--green);color:#fff}.empty{display:none;text-align:center;padding:40px;color:var(--muted);grid-column:1/-1}
+    .businesses{background:#f0f7f3}.business-row{display:grid;grid-template-columns:repeat(6,1fr);gap:13px}.business{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 12px;text-align:center}.logo{width:54px;height:54px;margin:auto auto 10px;display:grid;place-items:center;border-radius:15px;background:var(--mint);font-weight:950;color:var(--green);font-size:1.15rem}.business strong{display:block}.business small{color:var(--muted)}
+    .how{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.step{padding:24px;border-radius:20px;background:#fff;border:1px solid var(--line)}.num{width:38px;height:38px;display:grid;place-items:center;background:var(--green);color:#fff;border-radius:12px;font-weight:900}.step h3{margin:16px 0 6px}.step p{margin:0;color:var(--muted)}
+    .merchant{background:var(--ink);color:#fff;border-radius:26px;padding:45px;display:flex;align-items:center;justify-content:space-between;gap:28px}.merchant h2{font-size:2rem;margin:0 0 8px}.merchant p{color:#bfd0c8;margin:0}.merchant .btn{background:var(--yellow);color:var(--ink);white-space:nowrap}
+    footer{background:#0d1b15;color:#b8c9c1;padding:45px 0 25px}.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}.foot .brand{color:#55dd99}.foot h4{color:#fff;margin:0 0 12px}.foot a{display:block;margin:7px 0}.legal{border-top:1px solid #ffffff18;margin-top:35px;padding-top:20px;font-size:.78rem}
+    .toast{position:fixed;left:50%;bottom:24px;z-index:30;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;box-shadow:var(--shadow);transition:.25s}.toast.show{transform:translate(-50%,0)}
+    @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(4,1fr)}.business-row{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:760px){.navlinks,.actions .ghost{display:none}.actions{margin-left:auto}.hero{padding:45px 0}.hero-grid{grid-template-columns:1fr}.hero-card{display:none}.search{flex-wrap:wrap}.search button{width:100%}.categories{display:flex;overflow:auto;padding-bottom:8px}.cat{min-width:105px}.grid{grid-template-columns:1fr}.how{grid-template-columns:1fr}.business-row{grid-template-columns:repeat(2,1fr)}.merchant{padding:30px;display:block}.merchant .btn{margin-top:22px}.foot{grid-template-columns:1fr 1fr}.section-head{align-items:start}.section-head a{display:none}}
+  </style>
+</head>
+<body>
+  <div class="demo-bar">Concept demo — businesses and offers shown here are fictional. <a href="index.html">View architecture</a></div>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#">Chhut<span>Cha</span></a>
+      <div class="navlinks"><a href="#deals">Deals</a><a href="#categories">Categories</a><a href="#businesses">Businesses</a><a href="#how">How it works</a></div>
+      <div class="actions"><button class="btn ghost">Sign in</button><button class="btn primary">For businesses</button></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Fresh deals added across Nepal</div>
+          <h1>Spend less. Enjoy <em>more.</em></h1>
+          <p>Find verified discounts from restaurants, shops, services, travel, and online businesses—all in one place.</p>
+          <form class="search" id="searchForm">
+            <input id="searchInput" aria-label="Search coupons" placeholder="Search pizza, gym, hotel, electronics…">
+            <button type="submit">Find deals</button>
+          </form>
+          <div class="quick">Popular: <button data-search="restaurant">Restaurants</button><button data-search="electronics">Electronics</button><button data-search="travel">Travel</button><button data-search="online">Online deals</button></div>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <div class="ticket one"><div class="mini">HIMALAYAN BITES</div><div class="deal">30% OFF</div><p>Family dining this weekend</p><div class="dash"></div><code>CHHUT30</code></div>
+          <div class="ticket two"><div class="mini">NEPAL GETAWAYS</div><div class="deal">NPR 2,000 OFF</div><p>Your next mountain escape</p><div class="dash"></div><code>TRAVEL2K</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Browse by category</h2><p>Something useful for every kind of day.</p></div></div>
+        <div class="categories">
+          <button class="cat active" data-category="all"><span class="icon">✨</span><span>All deals</span></button>
+          <button class="cat" data-category="food"><span class="icon">🍜</span><span>Food</span></button>
+          <button class="cat" data-category="grocery"><span class="icon">🛒</span><span>Groceries</span></button>
+          <button class="cat" data-category="fashion"><span class="icon">👟</span><span>Fashion</span></button>
+          <button class="cat" data-category="travel"><span class="icon">🏔️</span><span>Travel</span></button>
+          <button class="cat" data-category="electronics"><span class="icon">🎧</span><span>Electronics</span></button>
+          <button class="cat" data-category="wellness"><span class="icon">🧘</span><span>Wellness</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="deals" style="padding-top:10px">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Trending deals</h2><p id="resultText">Handpicked offers customers are loving right now.</p></div><a href="#deals">View all deals →</a></div>
+        <div class="toolbar"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="nearby">Near me</button><button class="filter" data-filter="online">Online</button><button class="filter" data-filter="expiring">Ending soon</button></div>
+        <div class="grid" id="couponGrid">
+          <article class="coupon" data-category="food" data-tags="restaurant nearby kathmandu food momo">
+            <div class="visual" style="--c1:#e65b3d;--c2:#ff9d55"><span class="storemark">HB</span><button class="save" aria-label="Save coupon">♡</button><div class="off">30% OFF</div></div>
+            <div class="content"><div class="meta"><span>Himalayan Bites</span><span>📍 Kathmandu</span></div><h3>30% off your family dining bill</h3><p>Valid on dine-in orders above NPR 1,500.</p><div class="coupon-footer"><small>Ends in 3 days</small><button class="claim" data-code="CHHUT30">Get coupon</button></div></div>
+          </article>
+          <article class="coupon" data-category="grocery" data-tags="grocery online kathmandu delivery household">
+            <div class="visual" style="--c1:#168a55;--c2:#61c578"><span class="storemark">BKB</span><button class="save" aria-label="Save coupon">♡</button><div class="off">NPR 500 OFF</div></div>
+            <div class="content"><div class="meta"><span>Bazaar Ko Basket</span><span>Online</span></div><h3>Save NPR 500 on monthly groceries</h3><p>Minimum order NPR 3,500. Delivery included.</p><div class="coupon-footer"><small>Popular</small><button class="claim" data-code="BASKET500">Get coupon</button></div></div>
+          </article>
+          <article class="coupon" data-category="fashion" data-tags="fashion shoes clothing nearby pokhara">
+            <div class="visual" style="--c1:#5a50c8;--c2:#ae72dc"><span class="storemark">TH</span><button class="save" aria-label="Save coupon">♡</button><div class="off">BUY 1 GET 1</div></div>
+            <div class="content"><div class="meta"><span>Thread House</span><span>📍 Pokhara</span></div><h3>Buy one tee, get the second free</h3><p>Selected everyday collection in all stores.</p><div class="coupon-footer"><small>This week</small><button class="claim" data-code="THREADBOGO">Get coupon</button></div></div>
+          </article>
+          <article class="coupon" data-category="travel" data-tags="travel hotel getaway resort nagarkot nearby">
+            <div class="visual" style="--c1:#217bac;--c2:#55bdc4"><span class="storemark">NG</span><button class="save" aria-label="Save coupon">♡</button><div class="off">NPR 2,000 OFF</div></div>
+            <div class="content"><div class="meta"><span>Nepal Getaways</span><span>📍 Nagarkot</span></div><h3>Weekend mountain escape for two</h3><p>Two-night stay with breakfast included.</p><div class="coupon-footer"><small>Limited rooms</small><button class="claim" data-code="TRAVEL2K">Get coupon</button></div></div>
+          </article>
+          <article class="coupon" data-category="electronics" data-tags="electronics headphones accessories online gadgets">
+            <div class="visual" style="--c1:#22324a;--c2:#5b708c"><span class="storemark">NP</span><button class="save" aria-label="Save coupon">♡</button><div class="off">20% OFF</div></div>
+            <div class="content"><div class="meta"><span>Nepal Pixel</span><span>Online + stores</span></div><h3>20% off audio and phone accessories</h3><p>Selected headphones, chargers, and cases.</p><div class="coupon-footer"><small>Ending soon</small><button class="claim" data-code="PIXEL20">Get coupon</button></div></div>
+          </article>
+          <article class="coupon" data-category="wellness" data-tags="wellness gym yoga fitness nearby lalitpur">
+            <div class="visual" style="--c1:#06726c;--c2:#5eb3a0"><span class="storemark">FF</span><button class="save" aria-label="Save coupon">♡</button><div class="off">1 MONTH FREE</div></div>
+            <div class="content"><div class="meta"><span>FitFlow Nepal</span><span>📍 Lalitpur</span></div><h3>One free month with quarterly plan</h3><p>Gym, yoga classes, and fitness assessment.</p><div class="coupon-footer"><small>New members</small><button class="claim" data-code="FITFREE">Get coupon</button></div></div>
+          </article>
+          <article class="coupon" data-category="food" data-tags="coffee cafe food nearby bhaktapur">
+            <div class="visual" style="--c1:#744329;--c2:#c47b48"><span class="storemark">CC</span><button class="save" aria-label="Save coupon">♡</button><div class="off">FREE COFFEE</div></div>
+            <div class="content"><div class="meta"><span>Courtyard Coffee</span><span>📍 Bhaktapur</span></div><h3>Free coffee with any breakfast plate</h3><p>Available every weekday before 11 AM.</p><div class="coupon-footer"><small>Weekdays</small><button class="claim" data-code="MORNINGCUP">Get coupon</button></div></div>
+          </article>
+          <article class="coupon" data-category="wellness" data-tags="online education course language service">
+            <div class="visual" style="--c1:#d0456f;--c2:#f18a79"><span class="storemark">SL</span><button class="save" aria-label="Save coupon">♡</button><div class="off">40% OFF</div></div>
+            <div class="content"><div class="meta"><span>SkillLadder</span><span>100% online</span></div><h3>40% off professional online courses</h3><p>Choose from technology, business, and language.</p><div class="coupon-footer"><small>Online exclusive</small><button class="claim" data-code="LEARN40">Get coupon</button></div></div>
+          </article>
+          <div class="empty" id="empty">No matching demo coupons yet. Try another search or category.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="businesses" id="businesses">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Popular businesses</h2><p>Discover trusted local and online favorites.</p></div><a href="#">Explore businesses →</a></div>
+        <div class="business-row">
+          <div class="business"><div class="logo">HB</div><strong>Himalayan Bites</strong><small>Restaurant</small></div>
+          <div class="business"><div class="logo">BKB</div><strong>Bazaar Ko Basket</strong><small>Groceries</small></div>
+          <div class="business"><div class="logo">TH</div><strong>Thread House</strong><small>Fashion</small></div>
+          <div class="business"><div class="logo">NG</div><strong>Nepal Getaways</strong><small>Travel</small></div>
+          <div class="business"><div class="logo">NP</div><strong>Nepal Pixel</strong><small>Electronics</small></div>
+          <div class="business"><div class="logo">FF</div><strong>FitFlow Nepal</strong><small>Wellness</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Saving is simple</h2><p>From discovery to checkout in three quick steps.</p></div></div>
+        <div class="how">
+          <article class="step"><div class="num">1</div><h3>Discover</h3><p>Search by category, location, business, or the thing you need today.</p></article>
+          <article class="step"><div class="num">2</div><h3>Claim</h3><p>Open a verified offer and receive a secure coupon code or QR.</p></article>
+          <article class="step"><div class="num">3</div><h3>Redeem</h3><p>Show it at checkout or apply the code online before it expires.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0"><div class="wrap merchant"><div><h2>Grow your business with better deals.</h2><p>Reach new customers, manage campaigns, and measure every redemption.</p></div><button class="btn">List your business</button></div></section>
+  </main>
+
+  <footer>
+    <div class="wrap"><div class="foot"><div><a class="brand" href="#">Chhut<span>Cha</span></a><p>Nepal's coupon and local deals marketplace.</p></div><div><h4>Discover</h4><a href="#deals">All deals</a><a href="#categories">Categories</a><a href="#businesses">Businesses</a></div><div><h4>For business</h4><a href="#">Get started</a><a href="#">Merchant login</a><a href="#">How it works</a></div><div><h4>Company</h4><a href="index.html">Architecture</a><a href="#">About</a><a href="#">Contact</a></div></div><div class="legal">© 2026 ChhutCha. Demo content only; all displayed businesses and offers are fictional.</div></div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+    const cards=[...document.querySelectorAll('.coupon')];
+    const toast=document.getElementById('toast');
+    function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>toast.classList.remove('show'),2400)}
+    function applyFilter(term,category='all'){
+      term=term.trim().toLowerCase();let count=0;
+      cards.forEach(card=>{const matchCategory=category==='all'||card.dataset.category===category;const matchTerm=!term||(card.textContent+' '+card.dataset.tags).toLowerCase().includes(term);const show=matchCategory&&matchTerm;card.style.display=show?'flex':'none';if(show)count++});
+      document.getElementById('empty').style.display=count?'none':'block';
+      document.getElementById('resultText').textContent=term?count+' demo deal'+(count===1?'':'s')+' matching “'+term+'”':'Handpicked offers customers are loving right now.';
+    }
+    document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();applyFilter(document.getElementById('searchInput').value);document.getElementById('deals').scrollIntoView()});
+    document.querySelectorAll('[data-search]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('searchInput').value=b.dataset.search;applyFilter(b.dataset.search);document.getElementById('deals').scrollIntoView()}));
+    document.querySelectorAll('.cat').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.cat').forEach(x=>x.classList.toggle('active',x===b));document.getElementById('searchInput').value='';applyFilter('',b.dataset.category);document.getElementById('deals').scrollIntoView()}));
+    document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x===b));applyFilter(b.dataset.filter==='all'?'':b.dataset.filter)}));
+    document.querySelectorAll('.save').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('saved');b.textContent=b.classList.contains('saved')?'♥':'♡';notify(b.classList.contains('saved')?'Deal saved':'Removed from saved deals')}));
+    document.querySelectorAll('.claim').forEach(b=>b.addEventListener('click',()=>notify('Demo coupon code: '+b.dataset.code)));
+  </script>
+</body>
+</html>
