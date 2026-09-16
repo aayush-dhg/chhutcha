@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ChhutCha Architecture</title>
+  <style>
+    :root{--bg:#07111f;--panel:#0e1c2e;--line:#2c4864;--text:#eef7ff;--muted:#a8bfd2;--brand:#35d07f;--accent:#ffca4b}
+    *{box-sizing:border-box} body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at top,#12304a,var(--bg) 48%);color:var(--text)}
+    header,main{width:min(1180px,92vw);margin:auto} header{padding:56px 0 28px} h1{font-size:clamp(2rem,5vw,4rem);margin:0} h2{margin:0 0 8px} p{color:var(--muted)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.controls button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer}
+    .controls button.active{background:var(--brand);color:#052012;border-color:var(--brand)}
+    .diagram{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;padding-bottom:48px}.group{display:grid;gap:12px}
+    .group>h2{text-align:center;color:var(--accent);font-size:1rem;text-transform:uppercase;letter-spacing:.1em}.card{background:linear-gradient(145deg,#12263d,var(--panel));border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 16px 30px #0005;transition:.2s}
+    .card:hover,.card.focus{transform:translateY(-3px);border-color:var(--brand);box-shadow:0 0 0 2px #35d07f33,0 16px 30px #0007}.card h3{margin:0 0 8px}.card p{margin:0;font-size:.92rem}.tag{display:inline-block;color:var(--brand);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .flow{grid-column:1/-1;background:#091625aa;border:1px dashed var(--line);border-radius:16px;padding:16px;text-align:center;color:var(--muted)}.arrow{color:var(--brand);font-size:1.5rem;padding:0 8px}
+    footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted)} [hidden]{display:none!important}
+    @media(max-width:800px){.diagram{grid-template-columns:1fr}.flow{grid-column:auto}.arrow{display:block;transform:rotate(90deg)}}
+  </style>
+</head>
+<body>
+<header>
+  <span class="tag">chhutcha.com · proposed architecture</span>
+  <h1>One coupon platform.<br>Built to grow across Nepal.</h1>
+  <p>Explore the clients, modular application domains, and platform services. Select a view to focus the diagram.</p>
+  <div class="controls" role="group" aria-label="Architecture view">
+    <button class="active" data-view="all">Full system</button>
+    <button data-view="customer">Customer journey</button>
+    <button data-view="business">Business journey</button>
+    <button data-view="trust">Trust & redemption</button>
+  </div>
+</header>
+<main>
+  <section class="diagram" aria-live="polite">
+    <div class="group">
+      <h2>Experiences</h2>
+      <article class="card" data-tags="customer"><span class="tag">Web first</span><h3>Customer marketplace</h3><p>Browse, search, save, claim, and view redemption history.</p></article>
+      <article class="card" data-tags="business"><span class="tag">Merchant tools</span><h3>Business dashboard</h3><p>Manage verification, branches, coupons, staff, and analytics.</p></article>
+      <article class="card" data-tags="trust"><span class="tag">Operations</span><h3>Admin portal</h3><p>Approve, moderate, investigate reports, and audit changes.</p></article>
+      <article class="card" data-tags="customer business"><span class="tag">Future</span><h3>Android & iOS</h3><p>Reuse the same versioned API and domain rules.</p></article>
+    </div>
+    <div class="group">
+      <h2>Application</h2>
+      <article class="card" data-tags="customer business trust"><span class="tag">API boundary</span><h3>Versioned API</h3><p>Authentication, authorization, validation, and client contracts.</p></article>
+      <article class="card" data-tags="customer business"><h3>Identity & access</h3><p>Phone/email OTP, secure sessions, roles, and business teams.</p></article>
+      <article class="card" data-tags="business trust"><h3>Businesses & coupons</h3><p>Profiles, branches, offer rules, inventory, review, and scheduling.</p></article>
+      <article class="card" data-tags="customer"><h3>Discovery & search</h3><p>Keywords, categories, location, ranking, and saved deals.</p></article>
+      <article class="card" data-tags="customer business trust"><h3>Claims & redemption</h3><p>Eligibility, expiring QR tokens, atomic redemption, and receipts.</p></article>
+      <article class="card" data-tags="business trust"><h3>Moderation & insights</h3><p>Reports, disputes, audit trails, conversion, and campaign metrics.</p></article>
+    </div>
+    <div class="group">
+      <h2>Platform</h2>
+      <article class="card" data-tags="customer business trust"><h3>PostgreSQL</h3><p>Transactional system of record for marketplace data.</p></article>
+      <article class="card" data-tags="customer trust"><h3>Redis</h3><p>Caching, OTP throttles, rate limits, and redemption locks.</p></article>
+      <article class="card" data-tags="business trust"><h3>Object storage</h3><p>Coupon media and access-controlled verification documents.</p></article>
+      <article class="card" data-tags="customer business"><h3>Workers & integrations</h3><p>Notifications, expiry jobs, SMS/email, maps, eSewa, and Khalti.</p></article>
+      <article class="card" data-tags="trust"><h3>Observability & security</h3><p>Logs, metrics, tracing, alerts, backups, WAF, and audit events.</p></article>
+    </div>
+    <div class="flow"><strong>Primary redemption path:</strong> discover <span class="arrow">→</span> eligibility check <span class="arrow">→</span> expiring code/QR <span class="arrow">→</span> merchant validation <span class="arrow">→</span> atomic redemption</div>
+  </section>
+</main>
+<footer><main>ChhutCha begins as a modular monolith: simpler to ship and operate today, with clear boundaries for future scaling.</main></footer>
+<script>
+  const buttons=[...document.querySelectorAll('button[data-view]')];
+  const cards=[...document.querySelectorAll('.card')];
+  buttons.forEach(button=>button.addEventListener('click',()=>{
+    buttons.forEach(b=>b.classList.toggle('active',b===button));
+    const view=button.dataset.view;
+    cards.forEach(card=>{
+      const match=view==='all'||card.dataset.tags.split(' ').includes(view);
+      card.hidden=!match;
+      card.classList.toggle('focus',match&&view!=='all');
+    });
+  }));
+</script>
+</body>
+</html>
